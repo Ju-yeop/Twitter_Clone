@@ -1,7 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
-import { dbService } from "fbase";
+import { dbService, storageService } from "fbase";
 import Tweet from "components/Tweet";
+import {v4 as uuidv4} from "uuid";
 
 const Home = ({userObj}) => {
     const [tweet, setTweet] = useState("");
@@ -33,12 +34,21 @@ const Home = ({userObj}) => {
     }
     const onSubmit = async (event) => {
         event.preventDefault();
-        await dbService.collection("tweets").add({
+        let attachmentUrl = ""
+        if (attachment !== ""){
+            const attachmentRef = storageService.ref().child(`${userObj.uid}/${uuidv4()}`);
+            const response = await attachmentRef.putString(attachment, "data_url");
+            attachmentUrl = await response.ref.getDownloadURL();
+        }
+        const tweetObj = {
             text:tweet,
             createAt:Date.now(),
-            creatorId:userObj.uid
-        })
+            creatorId:userObj.uid,
+            attachmentUrl
+        }
+        await dbService.collection("tweets").add(tweetObj)
         setTweet("");
+        setAttachment("");
     }
     const onFileChange = (event) => {
         const {target:{files}} = event;
