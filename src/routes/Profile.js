@@ -24,6 +24,7 @@ export default ({refreshUser, userObj}) => {
     const onLogOutClick = () => {
         authService.signOut();
         history.push("/");
+        refreshUser();
     };
     const getMyTweets = async() => {
         tweets = await dbService.collection("tweets")
@@ -37,12 +38,19 @@ export default ({refreshUser, userObj}) => {
     }, []);
 
     return (
-        <>
-            <form onSubmit={onSubmit}>
-                <input type="text" value={profileName} placeholder="Profile Name" required onChange={onChange}/>
-                <input type="submit" value="Update"/>
+        <div className="container">
+            <form onSubmit={onSubmit} className="profileForm">
+                <input className="formInput" autoFocus type="text" value={profileName} placeholder="Profile Name" required onChange={onChange}/>
+                <input
+                type="submit"
+                value="Update Profile"
+                className="formBtn"
+                style={{
+                    marginTop: 10,
+                }}
+                />
             </form>
-            <button onClick={onLogOutClick}>Log Out</button>
-        </>
+            <span className="formBtn cancelBtn logOut" onClick={onLogOutClick}>Log Out</span>
+        </div>
     );
 };
