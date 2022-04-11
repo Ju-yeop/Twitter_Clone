@@ -1,7 +1,7 @@
 import { authService } from "../fbase";
 import {GithubAuthProvider,
         GoogleAuthProvider} from "firebase/auth";
-import AuthForm from "components/AuthForm";
+import AuthForm from "../components/AuthForm";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {

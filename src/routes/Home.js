@@ -1,8 +1,8 @@
 import React, { useEffect } from "react";
 import { useState } from "react";
 import { dbService } from "../fbase";
-import Tweet from "components/Tweet";
-import TweetFactory from "components/TweetFactory";
+import Tweet from "../components/Tweet";
+import TweetFactory from "../components/TweetFactory";
 
 
 const Home = ({userObj}) => {
