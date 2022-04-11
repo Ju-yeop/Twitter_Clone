@@ -1,4 +1,4 @@
-import { authService } from "fbase";
+import { authService } from "../fbase";
 import {GithubAuthProvider,
         GoogleAuthProvider} from "firebase/auth";
 import AuthForm from "components/AuthForm";
