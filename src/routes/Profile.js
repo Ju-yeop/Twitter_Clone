@@ -1,5 +1,5 @@
 /* eslint-disable import/no-anonymous-default-export */
-import { authService, dbService } from "fbase";
+import { authService, dbService } from "../fbase";
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { updateProfile } from "firebase/auth";
